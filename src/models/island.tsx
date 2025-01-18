@@ -16,7 +16,7 @@ import * as THREE from "three";
 import { GroupProps } from "@react-three/fiber";
 import { a } from "@react-spring/three";
 import { GLTF } from 'three-stdlib'
-import {Stage} from "../pages/Home.tsx";
+import {Stage} from "../pages/Home";
 
 type GLTFResult = GLTF & {
     nodes: {
@@ -93,9 +93,11 @@ export default function Island({isRotating, setIsRotating, setCurrentStage, ...p
         if (e.key === "ArrowLeft") {
             if (!isRotating) setIsRotating(true);
             islandRef.current!.rotation.y += 0.01 * Math.PI;
+            rotationSpeed.current = 0.0125;
         } else if (e.key === "ArrowRight") {
             if (!isRotating) setIsRotating(true);
             islandRef.current!.rotation.y -= 0.01 * Math.PI;
+            rotationSpeed.current = -0.0125;
         }
     }
 

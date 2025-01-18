@@ -1,5 +1,5 @@
 import React from "react";
-import {Stage} from "../pages/Home.tsx";
+import {Stage} from "../pages/Home";
 import {Link} from "react-router-dom";
 
 import arrow from "../assets/icons/arrow.svg"

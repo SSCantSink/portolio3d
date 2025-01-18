@@ -8,6 +8,21 @@ declare module '*.svg' {
     export default src
 }
 
+declare module '*.png' {
+    const src: string
+    export default src
+}
+
+declare module '*.jpg' {
+    const src: string
+    export default src
+}
+
+declare module '*.mp3' {
+    const src: string
+    export default src
+}
+
 interface ImportMetaEnv {
     readonly VITE_APP_EMAILJS_SERVICE_ID: string
     readonly VITE_APP_EMAILJS_TEMPLATE_ID: string

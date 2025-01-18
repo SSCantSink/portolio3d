@@ -1,10 +1,10 @@
 import React, {Suspense, useRef, useState} from "react";
 import emailjs from "@emailjs/browser";
 import {Canvas} from "@react-three/fiber";
-import {Fox} from "../models/Fox.tsx";
-import Loader from "../components/Loader.tsx";
-import {useAlert} from "../hooks/useAlert.ts";
-import Alert from "../components/Alert.tsx";
+import {Fox} from "../models/Fox";
+import Loader from "../components/Loader";
+import {useAlert} from "../hooks/useAlert";
+import Alert from "../components/Alert";
 
 interface IContactForm {
     name: string;
@@ -75,7 +75,7 @@ const Contact = () => {
     }
 
     return (
-        <section className='relative flex lg:flex-row flex-col max-container'>
+        <section className='relative flex lg:flex-row flex-col max-container h-[100vh]'>
             {alert.show && <Alert type={alert.type} text={alert.text} />}
             <div className='flex-1 min-w-[50%] flex flex-col'>
                 <h1 className='head-text'>Get in Touch</h1>

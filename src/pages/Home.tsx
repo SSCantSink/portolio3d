@@ -1,11 +1,14 @@
-import React, {Suspense, useState} from "react";
+import React, {Suspense, useState, useEffect, useRef} from "react";
 import {Canvas, Euler, Vector3} from "@react-three/fiber";
-import Loader from "../components/Loader.tsx";
-import Island from "../models/island.tsx";
-import Sky from "../models/Sky.tsx";
-import Bird from "../models/Bird.tsx";
-import Plane from "../models/Plane.tsx";
-import {HomeInfo} from "../components/HomeInfo.tsx";
+import Loader from "../components/Loader";
+import Island from "../models/island";
+import Sky from "../models/Sky";
+import Bird from "../models/Bird";
+import Plane from "../models/Plane";
+import {HomeInfo} from "../components/HomeInfo";
+
+import lifeAsAlways from "../assets/life_as_always.mp3";
+import {soundoff, soundon} from "../assets/icons";
 
 export enum Stage {
     Stage1 = 1,
@@ -22,8 +25,24 @@ interface ObjectProps {
 
 const Home = () => {
 
+    const audioRef = useRef<HTMLAudioElement>(new Audio(lifeAsAlways));
+    audioRef.current.volume = 0.4;
+    audioRef.current.loop = true;
+
     const [isRotating, setIsRotating] = useState(false);
     const [currentStage, setCurrentStage] = useState<Stage | null>(Stage.Stage1);
+
+    const [isPlayingMusic, setIsPlayingMusic] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (isPlayingMusic) {
+            audioRef.current.play();
+        }
+
+        return () => {
+            audioRef.current.pause();
+        }
+    }, [isPlayingMusic]);
 
     const adjustIslandForScreenSize = () : ObjectProps => {
         let screenScale: Vector3 | undefined;
@@ -89,6 +108,15 @@ const Home = () => {
                     />
                 </Suspense>
             </Canvas>
+            <div className='absolute bottom-2 left-2'>
+                <img src={!isPlayingMusic ? soundoff: soundon} alt="toggle music"
+                    className='w-10 h-10 cursor-pointer object-contain'
+                    onClick={() => {
+                        setIsPlayingMusic(!isPlayingMusic);
+                    }}
+                />
+
+            </div>
         </section>
     );
 }

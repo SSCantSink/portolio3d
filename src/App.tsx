@@ -1,15 +1,15 @@
 import React from "react";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
 import './index.css';
-import Navbar from "./components/Navbar.tsx";
-import Home from "./pages/Home.tsx";
-import About from "./pages/About.tsx";
-import Projects from "./pages/Projects.tsx";
-import Contact from "./pages/Contact.tsx";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import Contact from "./pages/Contact";
 
 export function App() {
     return (
-        <main className="bg-slate-300/20">
+        <main className="bg-slate-300/20 h-full">
             <Router>
                 <Navbar />
                 <Routes>
